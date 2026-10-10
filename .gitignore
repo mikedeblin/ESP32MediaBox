@@ -1,0 +1,4 @@
+firmware/secrets.h
+build/
+*.bin
+*.elf
