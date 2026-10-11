@@ -29,6 +29,24 @@ buttons, and an output compressor and limiter that keep the DAC from being overd
 - **Remembers state.** Volume, repeat, screen mode, last source, folder and track are kept in NVS
   and restored on boot.
 
+## Repository layout
+
+```
+case/       STL files for the 3D-printed enclosure
+docs/       photos
+firmware/   Arduino sketch (open firmware/firmware.ino)
+```
+
+The enclosure parts in `case/`:
+
+| File | Part |
+|---|---|
+| `case_front.stl` | front panel; the board mounts on its standoffs |
+| `case_rear.stl` | rear cover, snaps onto the front |
+| `keys_caps.stl` | button caps |
+| `keys_symbols.stl` | symbol inlays for the button caps |
+| `knob.stl` | encoder knob |
+
 ## Hardware
 
 | Part | Notes |
@@ -95,20 +113,21 @@ ESP32 Arduino core **3.3.x** (built and tested with 3.3.12). The firmware is abo
 [LovyanGFX](https://github.com/lovyan03/LovyanGFX),
 [U8g2](https://github.com/olikraus/u8g2).
 
-### Files in the sketch folder
+### Files in `firmware/`
 
 | File | Purpose |
 |---|---|
-| `MP3Player_S3.ino` | empty stub, so the folder opens in the Arduino IDE |
+| `firmware.ino` | empty stub, so the folder opens in the Arduino IDE |
 | `player.cpp` | all of the firmware (plain C++, no Arduino prototype generation) |
 | `compressor.h` | ReaComp-style compressor |
 | `limiter.h` | lookahead brick-wall limiter |
 | `fonts.h` | PT Sans VLW fonts (generated) |
+| `secrets.example.h` | template for `secrets.h` |
 | `secrets.h` | your WiFi password and DLNA server, **not committed** |
 
 ### Configuration
 
-Copy `secrets.example.h` to `secrets.h` and fill it in:
+In `firmware/`, copy `secrets.example.h` to `secrets.h` and fill it in:
 
 ```cpp
 #define WIFI_SSID         "your-ssid"
